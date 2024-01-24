@@ -2,6 +2,7 @@ from flask import Flask , render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, logout_user, login_required
+from powerbiclient import models, Report
 
 from config import config
 
@@ -72,6 +73,21 @@ def status_401(error):
 
 def status_404(error):
     return "<h1>Pagina no encontrada </h1>",404
+
+
+@app.route('/dashboard')
+def dashboard():
+    group_id = '942201c6-5600-4bd7-a841-5fbc9a767a4a'
+    report_id = '4259572e-0078-4768-9ca2-53ac89ddc48c'
+    base_url = 'https://api.powerbi.com'
+    access_token = 'TU_TOKEN_DE_ACCESO'
+
+    report = Report(group_id, report_id, base_url, access_token)
+    embed_url = report.get_embed_url()
+     
+    return render_template('dashboard.html',embed_url=embed_url)
+
+
 
 
 if __name__ == '__main__':

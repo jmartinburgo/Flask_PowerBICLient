@@ -1,0 +1,49 @@
+{% extends './base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Dashboard APP</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Pricing</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+
+
+<div class="site-header-logo">
+    <h1 class="text-center">
+        Dashboard App
+    </h1>
+    <a class="btn btn-secondary" href="{{url_for('logout')}}">Logout</a>
+</div>
+<br>
+<div>
+    <iframe width="800" height="600" src="{{ embed_url }}" frameborder="0" allowFullScreen="true"></iframe>
+</div>
+<div>
+    <iframe title="Implementacion_Peñaflor" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiZDFhOTcxYmYtY2E2OS00YzQ2LWJmMTktMjhhZDdhOTQ4MjRlIiwidCI6ImZhOTUzM2MzLWYwMDItNGJhMC1hZGE5LWNhYzg1NDg4ZDgxNCJ9" frameborder="0" allowFullScreen="true"></iframe>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiMmMzY2I0ZWUtZTdmNC00MTlmLThjNGQtMTcyZDViMzYyNWYyIiwidCI6ImZhOTUzM2MzLWYwMDItNGJhMC1hZGE5LWNhYzg1NDg4ZDgxNCJ9">Ver</a>
+</div>
+<div>
+    <iframe title="Implementacion_Peñaflor" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=4259572e-0078-4768-9ca2-53ac89ddc48c&autoAuth=true&ctid=fa9533c3-f002-4ba0-ada9-cac85488d814" frameborder="0" allowFullScreen="true"></iframe>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiMmMzY2I0ZWUtZTdmNC00MTlmLThjNGQtMTcyZDViMzYyNWYyIiwidCI6ImZhOTUzM2MzLWYwMDItNGJhMC1hZGE5LWNhYzg1NDg4ZDgxNCJ9">Ver</a>
+</div>
+{% endblock %}  
