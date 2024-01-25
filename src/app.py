@@ -93,8 +93,8 @@ def dashboard():
     group_id = '942201c6-5600-4bd7-a841-5fbc9a767a4a'
     report_id = '4259572e-0078-4768-9ca2-53ac89ddc48c'
     base_url = 'https://api.powerbi.com'
-    client_id="a7dc3be3-e643-4296-86d5-a77a74ed8cf3"
-    client_secret="htS8Q~EVgzc5Sl2LA0xalVXM5ynPaPPPeAdCQazk"
+    client_id=""
+    client_secret=""
 
     authority_url = 'https://login.microsoftonline.com/fa9533c3-f002-4ba0-ada9-cac85488d814'
     resource_url = 'https://graph.microsoft.com'
