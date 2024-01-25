@@ -3,8 +3,21 @@ from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, logout_user, login_required
 from powerbiclient import models, Report
+from adal import AuthenticationContext
+from powerbiclient import Report
+import requests
+
+
+#Definimos las credenciales de Azure EntraID y el Group ID 
+
+tenant_id="fa9533c3-f002-4ba0-ada9-cac85488d814"
+client_id="a7dc3be3-e643-4296-86d5-a77a74ed8cf3"
+client_secret="htS8Q~EVgzc5Sl2LA0xalVXM5ynPaPPPeAdCQazk"
+
+
 
 from config import config
+
 
 # Models:
 from models.ModelUser import ModelUser
@@ -76,17 +89,28 @@ def status_404(error):
 
 
 @app.route('/dashboard')
-def dashboard():
+def dashboard():	
     group_id = '942201c6-5600-4bd7-a841-5fbc9a767a4a'
     report_id = '4259572e-0078-4768-9ca2-53ac89ddc48c'
     base_url = 'https://api.powerbi.com'
-    access_token = 'TU_TOKEN_DE_ACCESO'
+    client_id="a7dc3be3-e643-4296-86d5-a77a74ed8cf3"
+    client_secret="htS8Q~EVgzc5Sl2LA0xalVXM5ynPaPPPeAdCQazk"
 
-    report = Report(group_id, report_id, base_url, access_token)
-    embed_url = report.get_embed_url()
-     
-    return render_template('dashboard.html',embed_url=embed_url)
+    authority_url = 'https://login.microsoftonline.com/fa9533c3-f002-4ba0-ada9-cac85488d814'
+    resource_url = 'https://graph.microsoft.com'
 
+    context = AuthenticationContext(authority_url)
+    token_response = context.acquire_token_with_client_credentials(resource_url, client_id, client_secret)
+
+    if 'accessToken' in token_response:
+        access_token = token_response['accessToken']
+        report = Report(group_id, report_id, base_url, access_token)
+        embed_url = report.get_embed_url()
+        return render_template('dashboard.html',embed_url=embed_url)
+        
+
+    else:
+        return render_template('auth/home')
 
 
 
