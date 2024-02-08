@@ -90,11 +90,16 @@ def status_404(error):
 
 @app.route('/dashboard')
 def dashboard():	
-    group_id = '942201c6-5600-4bd7-a841-5fbc9a767a4a'
-    report_id = '4259572e-0078-4768-9ca2-53ac89ddc48c'
-    base_url = 'https://api.powerbi.com'
+    group_id = ''
+    report_id = ''
+    base_url = ''
     client_id=""
     client_secret=""
+    object_id=""
+    tenant_id= ""
+
+    #token_url= f'https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token'
+    #authority_url = f'https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token'
 
     authority_url = 'https://login.microsoftonline.com/fa9533c3-f002-4ba0-ada9-cac85488d814'
     resource_url = 'https://graph.microsoft.com'
@@ -108,7 +113,7 @@ def dashboard():
         embed_url = report.get_embed_url()
         return render_template('dashboard.html',embed_url=embed_url)
         
-
+ 
     else:
         return render_template('auth/home')
 
